@@ -1,0 +1,118 @@
+#include<stdio.h>
+#include<conio.h>
+
+int bus[4][20];
+void view();
+void seat();
+void cancel();
+void exit();
+
+void main()
+{
+  int choice=0;
+  clrscr();
+  printf("---------------------------------\n");
+  printf("BUS RESERVATION SYSTEM\n");
+  printf("---------------------------------\n");
+  printf("1.view available buses\n2.Book seats\n3.cancel seat\n4.exit\n");
+  while(choice!=4)
+  {
+    printf("\nEnter your choice\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+       case 1:
+	    view();
+	    break;
+       case 2:
+	    seat();
+	    break;
+       case 3:
+	    cancel();
+	    break;
+       case 4:
+	    exit();
+	    break;
+       default:
+	    printf("Invalid choice");
+     }
+    }
+  getch();
+}
+//Program for view buses
+void view()
+{
+  printf("************Available Buses*************\n");
+  printf("---------------------------------------\n");
+  printf("Bus no.|         Destination           |\n");
+  printf("----------------------------------------\n");
+  printf("1      | \tKopargoan to shirdi    |\n");
+  printf("2      | \tShirdi    to rahata    |\n");
+  printf("3      | \tRahata    to kopargoan |\n");
+  printf("4      | \tvijapur   to shirdi    |\n");
+}
+//Program for booking seat
+void seat()
+{
+  int n,s;
+  printf("Enter the bus number(1-4): ");
+  scanf("%d",&n);
+  if(n<1||n>4)
+  {
+    printf("Invalid choice");
+  }
+  else
+  {
+  printf("Enter the seat number(1-20): ");
+  scanf("%d",&s);
+  if(s<1||s>20)
+  {
+    printf("Invalid seat number");
+  }
+  else if(bus[n-1][s-1]==1)
+	{
+	  printf("Seat is already booked");
+	}
+	else
+	{
+	  bus[n-1][s-1]=1;
+	  printf("Seat is booked succesfully");
+	}
+  }
+}
+//Program for cancelling seats
+void cancel()
+{
+  int n,s;
+  printf("Enter the bus number(1-4): ");
+  scanf("%d",&n);
+  if(n<1||n>4)
+  {
+    printf("Invalid choice");
+  }
+  else
+  {
+  printf("Enter the seat number(1-20): ");
+  scanf("%d",&s);
+  if(s<=1||s>=20)
+  {
+    printf("Invalid seat number");
+  }
+  else if(bus[n-1][s-1]==0)
+	{
+	  printf("Seat is already empty");
+	}
+	else
+	{
+	  bus[n-1][s-1]=0;
+	  printf("Seat is cancelled succesfully");
+	}
+
+  }
+}
+//program for exiting
+void exit()
+{
+   printf("Press enter");
+}
+
